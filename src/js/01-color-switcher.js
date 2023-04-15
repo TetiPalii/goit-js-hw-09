@@ -23,10 +23,3 @@ function onStopBtn() {
   startBtn.disabled = false;
   clearInterval(id);
 }
-
-// function changeColor() {
-//   const id = setInterval(() => {
-//     document.body.style.backgroundColor = getRandomHexColor();
-//   }, 1000);
-//   return id;
-// }
