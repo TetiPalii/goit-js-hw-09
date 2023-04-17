@@ -28,13 +28,19 @@ function onFormSubmit(e) {
     elements: { delay, step, amount },
   } = e.currentTarget;
 
-  for (let i = 1; i < amount; i += 1) {
-    createPromise(i, delay)
-      .then(({ position, delay }) => {
-        console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
-      })
-      .catch(({ position, delay }) => {
-        console.log(`❌ Rejected promise ${position} in ${delay}ms`);
-      });
+  for (
+    let delayStep = Number(delay.value);
+    (delayStep += Number(step.value));
+
+  ) {
+    for (let i = 1; i <= amount.value; i += 1) {
+      createPromise(i, delayStep)
+        .then(({ position, delay }) => {
+          console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
+        })
+        .catch(({ position, delay }) => {
+          console.log(`❌ Rejected promise ${position} in ${delay}ms`);
+        });
+    }
   }
 }
