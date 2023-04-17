@@ -1,3 +1,4 @@
+import Notiflix from 'notiflix';
 const form = document.querySelector('.form');
 
 function createPromise(position, delay) {
@@ -7,13 +8,13 @@ function createPromise(position, delay) {
     setTimeout(() => {
       if (shouldResolve) {
         resolve({
-          position: position,
-          delay: delay,
+          position,
+          delay,
         });
       } else {
         reject({
-          position: position,
-          delay: delay,
+          position,
+          delay,
         });
       }
     }, delay);
@@ -28,19 +29,21 @@ function onFormSubmit(e) {
     elements: { delay, step, amount },
   } = e.currentTarget;
 
-  for (
-    let delayStep = Number(delay.value);
-    (delayStep += Number(step.value));
+  let promiseDelay = Number(delay.value);
+  let promiseStep = Number(step.value);
 
-  ) {
-    for (let i = 1; i <= amount.value; i += 1) {
-      createPromise(i, delayStep)
-        .then(({ position, delay }) => {
-          console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
-        })
-        .catch(({ position, delay }) => {
-          console.log(`❌ Rejected promise ${position} in ${delay}ms`);
-        });
-    }
+  for (let i = 1; i <= amount.value; i += 1) {
+    createPromise(i, promiseDelay)
+      .then(({ position, delay }) => {
+        Notiflix.Notify.success(
+          `✅ Fulfilled promise ${position} in ${delay}ms`
+        );
+      })
+      .catch(({ position, delay }) => {
+        Notiflix.Notify.failure(
+          `❌ Rejected promise ${position} in ${delay}ms`
+        );
+      });
+    promiseDelay += promiseStep;
   }
 }
