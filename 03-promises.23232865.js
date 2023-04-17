@@ -1,2 +1,0 @@
-document.querySelector('[name="step"]');document.querySelector(".form").addEventListener("submit",(function(){(function(e,o){const n=Math.random()>.3;return new Promise(((t,i)=>{setTimeout((()=>{n?t(`✅ Fulfilled promise ${e} in ${o}ms`):i(`❌ Rejected promise ${e} in ${o}ms`)}),o)}))})(2,1500).then((({position:e,delay:o})=>{console.log(`✅ Fulfilled promise ${e} in ${o}ms`)})).catch((({position:e,delay:o})=>{console.log(`❌ Rejected promise ${e} in ${o}ms`)}))}));
-//# sourceMappingURL=03-promises.23232865.js.map
